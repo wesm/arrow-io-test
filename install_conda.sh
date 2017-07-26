@@ -39,7 +39,7 @@ conda install -y nomkl
 conda install --y conda-build jinja2 anaconda-client cmake curl
 
 # Set up C++ toolchain
-conda create -y -q -p $CPP_TOOLCHAIN python=2.7 \
+conda create -y -q -p $CPP_TOOLCHAIN python=3.6 \
     jemalloc=4.4.0 \
     nomkl \
     boost-cpp \
