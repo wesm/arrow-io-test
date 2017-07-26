@@ -18,10 +18,16 @@
 # under the License.
 
 export MINICONDA=$HOME/miniconda
+export CPP_TOOLCHAIN=$HOME/cpp-toolchain
+
+export CC=gcc-4.9
+export CXX=g++-4.9
+
 export PATH="$MINICONDA/bin:$PATH"
 export CONDA_PKGS_DIRS=$HOME/.conda_packages
 
-export BUILD_DIR=`pwd`/arrow
+export ARROW_CHECKOUT=$HOME/arrow
+export BUILD_DIR=$ARROW_CHECKOUT
 
 # XXX
 export BUILD_OS_NAME=linux
@@ -39,9 +45,23 @@ export ARROW_CPP_INSTALL=$BUILD_DIR/cpp-install
 export ARROW_CPP_BUILD_DIR=$BUILD_DIR/cpp-build
 export ARROW_C_GLIB_INSTALL=$BUILD_DIR/c-glib-install
 
-export CPP_TOOLCHAIN=$BUILD_DIR/cpp-toolchain
 export ARROW_BUILD_TOOLCHAIN=$CPP_TOOLCHAIN
 export BOOST_ROOT=$CPP_TOOLCHAIN
 export PATH=$CPP_TOOLCHAIN/bin:$PATH
 export LD_LIBRARY_PATH=$CPP_TOOLCHAIN/lib:$LD_LIBRARY_PATH
 export MAKE=ninja
+
+# Arrow test variables
+
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export HADOOP_HOME=/usr/lib/hadoop
+export CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath --glob`
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_HOME/lib/native/
+
+export ARROW_HDFS_TEST_HOST=impalalive
+export ARROW_HDFS_TEST_PORT=9000
+export ARROW_HDFS_TEST_USER=ubuntu
+export ARROW_LIBHDFS_DIR=/usr/lib
+
+export LIBHDFS3_CONF=/io/libhdfs3-hdfs-client.xml

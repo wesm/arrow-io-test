@@ -19,12 +19,14 @@
 
 set -ex
 
-source set_env_common.sh
-source install_conda.sh
+HERE=$(cd `dirname "${BASH_SOURCE[0]:-$0}"` && pwd)
 
-git clone git@github.com:apache/arrow.git
+source $HERE/set_env_common.sh
+source $HERE/install_conda.sh
 
-mkdir $ARROW_CPP_BUILD_DIR
+git clone https://github.com/apache/arrow.git $ARROW_CHECKOUT
+
+mkdir -p $ARROW_CPP_BUILD_DIR
 pushd $ARROW_CPP_BUILD_DIR
 
 cmake -GNinja \
@@ -34,4 +36,5 @@ cmake -GNinja \
       $ARROW_CPP_DIR
 
 ninja
-ninja install
+
+debug/io-hdfs-test
